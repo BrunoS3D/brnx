@@ -1,0 +1,8 @@
+{
+  "$schema": "./node_modules/nx/schemas/workspace-schema.json",
+  "version": 2,
+  "projects": {
+    "next-mf": "packages/next-mf",
+    "next-mf-e2e": "e2e/next-mf-e2e"
+  }
+}

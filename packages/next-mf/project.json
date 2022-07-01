@@ -1,0 +1,60 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "packages/next-mf/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/packages/next-mf",
+        "main": "packages/next-mf/src/index.ts",
+        "tsConfig": "packages/next-mf/tsconfig.lib.json",
+        "assets": [
+          "packages/next-mf/*.md",
+          {
+            "input": "./packages/next-mf/src",
+            "glob": "**/!(*.ts)",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/next-mf/src",
+            "glob": "**/*.d.ts",
+            "output": "./src"
+          },
+          {
+            "input": "./packages/next-mf",
+            "glob": "generators.json",
+            "output": "."
+          },
+          {
+            "input": "./packages/next-mf",
+            "glob": "executors.json",
+            "output": "."
+          }
+        ]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": [
+          "packages/next-mf/**/*.ts",
+          "packages/next-mf/generators.json",
+          "packages/next-mf/executors.json",
+          "packages/next-mf/package.json"
+        ]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/packages/next-mf"],
+      "options": {
+        "jestConfig": "packages/next-mf/jest.config.ts",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
